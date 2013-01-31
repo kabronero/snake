@@ -1,0 +1,304 @@
+<html>
+
+	<head>
+		
+
+
+		<script>
+			
+			curArriba = false;
+			curAbajo = false;
+			curIzquierda = false;
+			curDerecha = false;
+			flecha = "apreta la flechita amigo";
+			
+			// detecto el cursor apretado rElOco
+			
+
+		    function checkCur(e) {
+			    e = e || window.event;
+			
+			    if(e.keyCode=='38'){ //arriba
+					
+					flecha = "arriba";
+					curArriba = true;
+					curAbajo = false;
+					curIzquierda = false;
+					curDerecha = false;
+					
+					}
+			    
+			    
+			    if(e.keyCode=='40'){ //abajo
+					
+					flecha = "abajo";
+					curArriba = false;
+					curAbajo = true;
+					curIzquierda = false;
+					curDerecha = false;
+					
+					}
+			    
+			    if(e.keyCode=='37'){ //izquierda
+					
+					flecha = "izquierda";
+					curArriba = false;
+					curAbajo = false;
+					curIzquierda = true;
+					curDerecha = false;
+					
+					}
+			    
+			    
+			    if(e.keyCode=='39'){ //derecha
+					
+					flecha = "derecha";
+					curArriba = false;
+					curAbajo = false;
+					curIzquierda = false;
+					curDerecha = true;
+					
+					}
+					
+				document.getElementById("donde").innerHTML = flecha;
+
+				}
+			document.onkeydown = checkCur;
+		</script>
+		
+		<script>
+		
+			var int=self.setInterval(function(){levantateYAnda()},100);
+			var x = 1;
+			var y = 1;
+			var sumX = 0;
+			var sumY = 0;
+			letraX = 1;
+			letraY = "A";
+
+
+			
+			function levantateYAnda() {
+				
+				if(curArriba == true){
+					sumX = 0;
+					sumY = -1;
+					letraY = String.fromCharCode(letraY.charCodeAt(0) + sumY);
+				}
+				
+				
+				if(curAbajo == true){
+					sumX = 0;
+					sumY = 1;
+					letraY = String.fromCharCode(letraY.charCodeAt(0) + sumY);
+				}
+				
+				
+				if(curIzquierda == true){
+					sumX = -1;
+					sumY = 0;
+				}
+				
+				
+				if(curDerecha == true){
+					sumX = 1;
+					sumY = 0;
+				}
+				
+
+
+				x = x + sumX;
+				y = y + sumY;
+
+				if(letraY == "J"){
+				letraY = "A"; 
+				} else if(letraY == "@"){
+					letraY = "I";
+					}
+
+
+				if(x == 11){
+					x = 1;
+				} else if(x == 0){
+					x = 10;
+				}
+				
+				if(y == 10){
+					y = 1;
+				} else if(y == 0){
+					y = 9;
+				}
+
+				letraX = x;
+				
+				letraPosta = letraY + letraX;
+
+				document.getElementById("letra").innerHTML = letraPosta;
+				
+				
+				document.getElementById("ejeX").innerHTML = x;
+				document.getElementById("ejeY").innerHTML = y; 
+
+
+				function carlos(){
+
+					var celdas = document.getElementsByTagName("td");
+
+					for (i = 0; i < celdas.length; i++){
+						celdas[i].style.backgroundColor = "white";
+					}
+
+				}
+
+				carlos();
+
+				document.getElementById(letraPosta).style.backgroundColor = "yellow";
+				
+			}
+		
+		</script>
+		
+	</head>
+
+
+
+	<body onload="checkCur();">
+
+
+
+		<h2>Eje X: <span id="ejeX">1</span></h2>
+		<h2>Eje Y: <span id="ejeY">1</span></h2>
+
+		<h2>Letra: <span id="letra">1</span></h2>
+
+		<center>
+			<br><br><h3 id="donde">apreta la flechita amigo</h3>
+		
+
+
+		<table border="1" width="500px" height="500px" id="tabla">
+
+			<tr>
+				<td id="A1"></td>
+				<td id="A2"></td>
+				<td id="A3"></td>
+				<td id="A4"></td>
+				<td id="A5"></td>
+				<td id="A6"></td>
+				<td id="A7"></td>
+				<td id="A8"></td>
+				<td id="A9"></td>
+				<td id="A10"></td>
+			</tr>
+
+			<tr>
+				<td id="B1"></td>
+				<td id="B2"></td>
+				<td id="B3"></td>
+				<td id="B4"></td>
+				<td id="B5"></td>
+				<td id="B6"></td>
+				<td id="B7"></td>
+				<td id="B8"></td>
+				<td id="B9"></td>
+				<td id="B10"></td>
+			</tr>
+
+			<tr>
+				<td id="C1"></td>
+				<td id="C2"></td>
+				<td id="C3"></td>
+				<td id="C4"></td>
+				<td id="C5"></td>
+				<td id="C6"></td>
+				<td id="C7"></td>
+				<td id="C8"></td>
+				<td id="C9"></td>
+				<td id="C10"></td>
+			</tr>
+
+			<tr>
+				<td id="D1"></td>
+				<td id="D2"></td>
+				<td id="D3"></td>
+				<td id="D4"></td>
+				<td id="D5"></td>
+				<td id="D6"></td>
+				<td id="D7"></td>
+				<td id="D8"></td>
+				<td id="D9"></td>
+				<td id="D10"></td>
+			</tr>
+
+			<tr>
+				<td id="E1"></td>
+				<td id="E2"></td>
+				<td id="E3"></td>
+				<td id="E4"></td>
+				<td id="E5"></td>
+				<td id="E6"></td>
+				<td id="E7"></td>
+				<td id="E8"></td>
+				<td id="E9"></td>
+				<td id="E10"></td>
+			</tr>
+
+			<tr>
+				<td id="F1"></td>
+				<td id="F2"></td>
+				<td id="F3"></td>
+				<td id="F4"></td>
+				<td id="F5"></td>
+				<td id="F6"></td>
+				<td id="F7"></td>
+				<td id="F8"></td>
+				<td id="F9"></td>
+				<td id="F10"></td>
+			</tr>
+
+			<tr>
+				<td id="G1"></td>
+				<td id="G2"></td>
+				<td id="G3"></td>
+				<td id="G4"></td>
+				<td id="G5"></td>
+				<td id="G6"></td>
+				<td id="G7"></td>
+				<td id="G8"></td>
+				<td id="G9"></td>
+				<td id="G10"></td>
+			</tr>
+
+			<tr>
+				<td id="H1"></td>
+				<td id="H2"></td>
+				<td id="H3"></td>
+				<td id="H4"></td>
+				<td id="H5"></td>
+				<td id="H6"></td>
+				<td id="H7"></td>
+				<td id="H8"></td>
+				<td id="H9"></td>
+				<td id="H10"></td>
+			</tr>
+
+			<tr>
+				<td id="I1"></td>
+				<td id="I2"></td>
+				<td id="I3"></td>
+				<td id="I4"></td>
+				<td id="I5"></td>
+				<td id="I6"></td>
+				<td id="I7"></td>
+				<td id="I8"></td>
+				<td id="I9"></td>
+				<td id="I10"></td>
+			</tr>
+			
+		</center>
+
+		</table>
+
+	</body>
+
+</html>
