@@ -2,16 +2,36 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
 
+	
 	<script>
 	var boton;
-	$(document).ready(function() {
+	
+	/*$(document).ready(function() {
 		$("button").click(function(e){
 			boton = e.target.id;
 		});
-	});
+	});*/
+
+
+	
+		$(function() {			
+			//Enable swiping...
+			$("#tabla").swipe( {
+				//Generic swipe handler for all directions
+				swipe:function(event, direction, distance, duration, fingerCount) {
+					boton = direction;
+					checkCur();
+					console.log(boton);
+				},
+				//Default is 75px, set to 0 for demo so any distance triggers swipe
+			   threshold:0
+			});
+		});
+	
 
 
 	var config = {
@@ -63,28 +83,28 @@
 
 
 		switch(boton){
-			case "arr":
+			case "up":
 			flechaAnterior = flecha;
 			if (flechaAnterior != "abajo"){
 				flecha = "arriba";	
 			}
 			break;
 
-			case "abj":
+			case "down":
 			flechaAnterior = flecha;
 			if (flechaAnterior != "arriba"){
 				flecha = "abajo";
 			}
 			break;
 
-			case "izq":
+			case "left":
 			flechaAnterior = flecha;
 			if (flechaAnterior != "derecha"){
 				flecha = "izquierda";
 			}
 			break;
 
-			case "der":
+			case "right":
 			flechaAnterior = flecha;
 			if (flechaAnterior != "izquierda"){
 				flecha = "derecha";
@@ -314,12 +334,12 @@
 
 	<center>
 		<!--<h2>Snake para Pobres Beta (v 0.2)</h2>
-		<h3>Para jugar apretá alguna de las flechitas del teclado. ¡Ahora con niveles infinitos!</h3>-->
+		<h3>Para jugar apretá alguna de las flechitas del teclado. ¡Ahora con niveles infinitos!</h3>
 		
 		<button id="izq">izq</button>
 		<button id="der">der</button>
 		<button id="arr">arr</button>
-		<button id="abj">abj</button>
+		<button id="abj">abj</button>-->
 
 		<table border="1" width="90%" height="90%" id="tabla">
 
@@ -828,6 +848,9 @@
 			</tr>
 
 		</table>
+
+		
+
 	</center>
 	<!--
 	<strong>Nivel:</strong> <span id="nivel">0</span><br>
