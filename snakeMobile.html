@@ -6,24 +6,44 @@
 	<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
 
-	
+	<style type="text/css">
+
+		table
+			{
+			border-collapse:collapse;
+			border-spacing:0px 0px;
+			}
+
+		table
+			{
+			border: 1px solid black;
+			}
+
+	</style>
+
 	<script>
+
+	var tableSize = function(){
+
+		$("#tabla").width($(document).width()-20);
+		$("#tabla").height($("#tabla").width());
+
+	}
+
 	var boton;
-	
+
 	$(function() {			
 			
-			$("#tabla").swipe( {
+			$(document).swipe( {
 				swipe:function(event, direction, distance, duration, fingerCount) {
 					boton = direction;
 					checkCur();
-					console.log(boton);
+
 				},
 				
 				threshold:0
 			});
 		});
-	
-
 
 	var config = {
 		nivel: 0,
@@ -71,12 +91,10 @@
 			break;
 		}
 
+		
+		 
 
 	}
-
-	document.onkeydown = checkCur;
-	document.onclick = checkCur;
-
 
 
 	var cuadradito = function(posicionX, posicionY){
@@ -102,10 +120,7 @@
 		}			
 	}
 
-
-
 	var cabeza = new cuadradito(11,11);
-
 
 	var dibujarCabeza = function(){
 		document.getElementById(cabeza.posicion).style.backgroundColor = "red";
@@ -139,8 +154,6 @@
 
 		cola.push(cabeza.posicion);
 
-		
-
 		cola = cola.slice(cola.length - config.cola, cola.length);
 
 		for (i = 0; i < config.nivel; i++){
@@ -148,10 +161,7 @@
 
 		}	
 		
-		
-
 	}
-
 
 	var pastillita = new cuadradito(Math.floor(Math.random() * 21) + 1, Math.floor(Math.random() * 21) + 1);
 
@@ -212,7 +222,6 @@
 				default: 
 				break;
 
-
 			}
 
 		}
@@ -222,13 +231,9 @@
 
 	}
 
-
 	var dibujarPastilla = function(){
 		document.getElementById(pastillita.posicion).style.backgroundColor = "blue";
 	}
-
-
-
 
 	var borrarTodo = function(){
 		var celdas = document.getElementsByTagName("td");
@@ -239,7 +244,6 @@
 	}
 
 	var chequearColision = function(){
-
 
 		for(i = 1; i < cola.length - 1; i++){
 			if (cabeza.posicion == cola[i]){
@@ -264,7 +268,6 @@
 
 	var vida = function(){
 
-
 		borrarTodo();
 
 		chequearColision();
@@ -274,33 +277,20 @@
 		agarraPastilla();
 
 		dibujarPastilla();
+
 		dibujarCabeza();
-
-
-
 
 	}
 
 	</script>
 
-
-
 </head>
 
-
-
-<body onload="checkCur();">
+<body onload="tableSize();">
 
 	<center>
-		<!--<h2>Snake para Pobres Beta (v 0.2)</h2>
-		<h3>Para jugar apretá alguna de las flechitas del teclado. ¡Ahora con niveles infinitos!</h3>
 		
-		<button id="izq">izq</button>
-		<button id="der">der</button>
-		<button id="arr">arr</button>
-		<button id="abj">abj</button>-->
-
-		<table border="1" width="90%" height="90%" id="tabla">
+		<table border="0" id="tabla">
 
 			<tr>
 				<td id="1-1"></td>
@@ -820,7 +810,7 @@
 		Last build (?): january 29 2013 22:24
 	</center>-->
 
-	<table>
+	<table style="display:none;si ya ">
 		<td id="0-0"></td>
 	</table>
 
