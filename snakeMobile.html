@@ -10,25 +10,16 @@
 	<script>
 	var boton;
 	
-	/*$(document).ready(function() {
-		$("button").click(function(e){
-			boton = e.target.id;
-		});
-	});*/
-
-
-	
-		$(function() {			
-			//Enable swiping...
+	$(function() {			
+			
 			$("#tabla").swipe( {
-				//Generic swipe handler for all directions
 				swipe:function(event, direction, distance, duration, fingerCount) {
 					boton = direction;
 					checkCur();
 					console.log(boton);
 				},
-				//Default is 75px, set to 0 for demo so any distance triggers swipe
-			   threshold:0
+				
+				threshold:0
 			});
 		});
 	
@@ -48,39 +39,7 @@
 	flecha = ".";
 	flechaAnterior = "";
 
-	function checkCur(e) {
-		e = e || window.event;
-
-		switch(e.keyCode){
-			case 38:
-			flechaAnterior = flecha;
-			if (flechaAnterior != "abajo"){
-				flecha = "arriba";	
-			}
-			break;
-
-			case 40:
-			flechaAnterior = flecha;
-			if (flechaAnterior != "arriba"){
-				flecha = "abajo";
-			}
-			break;
-
-			case 37:
-			flechaAnterior = flecha;
-			if (flechaAnterior != "derecha"){
-				flecha = "izquierda";
-			}
-			break;
-
-			case 39:
-			flechaAnterior = flecha;
-			if (flechaAnterior != "izquierda"){
-				flecha = "derecha";
-			}
-			break;
-		}
-
+	function checkCur() {
 
 		switch(boton){
 			case "up":
